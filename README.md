@@ -23,7 +23,7 @@ DUMoE is evaluated on two downstream tasks:
 ## Framework
 
 <p align="center">
-  <img src="assets/framework.png" alt="DUMoE Framework" width="100%">
+  <img src="26_neurips_pipeline.png" alt="DUMoE Framework" width="100%">
 </p>
 
 ## Dataset
