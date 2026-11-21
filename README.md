@@ -1,12 +1,15 @@
 # DUMoE
 
-**Official PyTorch implementation** for
-
-> **Drift-Aware Multimodal User Representation Learning via Multi-Scale Temporal Modeling and Sparse Mixture-of-Experts**  
-> [[arXiv]](https://arxiv.org/abs/2608.25773)
+<h2 align="center">
+  <b>Drift-Aware Multimodal User Representation Learning via Multi-Scale Temporal Modeling and Sparse Mixture-of-Experts</b>
+</h2>
+<p align="center">
+  <b>NeurIPS 2026</b> &nbsp;·&nbsp; <a href="https://arxiv.org/abs/2608.25773">[arXiv]</a>
+</p>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2608.25773"><img src="https://img.shields.io/badge/arXiv-2608.25773-b31b1b.svg" alt="arXiv"></a>
+  <img src="https://img.shields.io/badge/NeurIPS-2026-blue.svg" alt="NeurIPS 2026">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/Python-3.9%2B-green.svg" alt="Python">
   <img src="https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg" alt="PyTorch">
@@ -20,9 +23,13 @@ Understanding user preferences from noisy, temporally evolving social media beha
 
 **DUMoE** (*Drift-aware User Modeling with Mixture-Of-Experts*) is a unified framework for drift-aware multimodal user representation learning. It jointly models multimodal signals, multi-scale temporal dynamics, and multi-interest structure:
 
-- ⏱️ **Temporal dynamics-aware backbone** — fuses static profile signals (MLP), short-term behavior (LSTM), and long-term dependencies (Transformer) into a coherent user vector \(\mathbf{z}_u\).
-- 🧩 **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse Top-\(K\) subset of experts to produce \(\mathbf{h}_u\).
-- 🎯 **Three-stage training** — Stage 1 backbone → Stage 2 expert specialization → Stage 3 gating, with multitask loss \(L = L_{\mathrm{cls}} + 1.5\, L_{\mathrm{rec}}\).
+- ⏱️ **Temporal dynamics-aware backbone** — fuses static profile signals (MLP), short-term behavior (LSTM), and long-term dependencies (Transformer) into a coherent user vector $z_u$.
+- 🧩 **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse Top-$K$ subset of experts to produce $h_u$.
+- 🎯 **Three-stage training** — Stage 1 backbone → Stage 2 expert specialization → Stage 3 gating, with multitask loss:
+
+$$
+L = L_{\mathrm{cls}} + \lambda\, L_{\mathrm{rec}}
+$$
 
 <p align="center">
   <img src="assets/pipeline.png" width="100%" alt="DUMoE pipeline">
@@ -35,10 +42,10 @@ Understanding user preferences from noisy, temporally evolving social media beha
 
 | Module | What it does |
 | --- | --- |
-| **Input** | User profile \(m_t^u\) + multimodal interaction sequence \(S_u\) (text & images), encoded by a multimodal encoder (UNITE) |
-| **(a) Backbone** | Static / short-term / long-term branches → fusion → \(\mathbf{z}_u\) |
-| **(b) MoE adapter** | Gating + Top-\(K\) experts → \(\mathbf{h}_u\) |
-| **Output** | Classification head \(\phi_{\mathrm{cls}}\) (\(L_{\mathrm{cls}}\)) and recommendation head \(\phi_{\mathrm{rec}}\) (\(L_{\mathrm{rec}}\)) |
+| **Input** | User profile $m_t^u$ + multimodal interaction sequence $S_u$ (text & images), encoded by a multimodal encoder (UNITE) |
+| **(a) Backbone** | Static / short-term / long-term branches → fusion → $z_u$ |
+| **(b) MoE adapter** | Gating + Top-$K$ experts → $h_u$ |
+| **Output** | Classification head $\phi_{\mathrm{cls}}$ ($L_{\mathrm{cls}}$) and recommendation head $\phi_{\mathrm{rec}}$ ($L_{\mathrm{rec}}$) |
 
 **Paper main result = staged training** (`scripts/run_dumoe_staged.sh`). Joint end-to-end training is provided as an ablation (`scripts/run_dumoe_joint.sh`).
 
@@ -46,8 +53,8 @@ Downstream evaluation freezes the encoder and probes:
 
 | | **Task A** — Interest classification | **Task B** — Interaction prediction |
 | --- | --- | --- |
-| Goal | Predict the 15-way interest of window \(t\) | Predict whether a candidate post is interacted in window \(t\) |
-| Input | \(\mathbf{z}_t\) | \(\mathbf{z}_{t-1}\) + tweet embedding |
+| Goal | Predict the 15-way interest of window $t$ | Predict whether a candidate post is interacted in window $t$ |
+| Input | $z_t$ | $z_{t-1}$ + tweet embedding |
 | Metrics | Hit@1, NDCG@3, Recall, KL | Acc, Recall, F1, BCE |
 
 ---
@@ -82,7 +89,7 @@ unzip dataset/ids/dumoe_ids.zip -d dataset/ids
 
 Windows are **30** posts each (newest-first); split by index **0–7** train / **8–9** val / **10–11** test. Full docs, 15 labels, and preprocessing notes: [`dataset/README.md`](dataset/README.md).
 
-> Questions about the dataset? Contact us (see below).
+> Questions about the dataset? Please open a GitHub issue.
 
 ---
 
@@ -189,22 +196,15 @@ DUMoE/
 If you use this code or dataset, please cite:
 
 ```bibtex
-@article{qian2026dumoe,
+@inproceedings{qian2026dumoe,
   title={Drift-Aware Multimodal User Representation Learning via Multi-Scale Temporal Modeling and Sparse Mixture-of-Experts},
   author={Qian, Ziqing and Chen, Haohang and Dang, Shengqi and Xiong, Yuhan and Shen, Canyu and Lei, Jiaying and Cao, Nan},
-  journal={arXiv preprint arXiv:2608.25773},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
   year={2026}
 }
 ```
 
 ---
-
-## ✉️ Contact
-
-- Ziqing Qian — qianziqing0719@gmail.com  
-- Corresponding author: Nan Cao  
-
-Intelligent Design & InnoVation Lab ([idvxlab](https://github.com/idvxlab)), Tongji University
 
 ## 📄 License
 
