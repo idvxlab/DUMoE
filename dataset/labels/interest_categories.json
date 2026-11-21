@@ -1,0 +1,20 @@
+{
+  "num_classes": 15,
+  "categories": [
+    {"id": 0, "name": "Entertainment"},
+    {"id": 1, "name": "Sports"},
+    {"id": 2, "name": "Technology"},
+    {"id": 3, "name": "Business"},
+    {"id": 4, "name": "Education"},
+    {"id": 5, "name": "Gaming"},
+    {"id": 6, "name": "Politics"},
+    {"id": 7, "name": "Art"},
+    {"id": 8, "name": "Culture"},
+    {"id": 9, "name": "Science"},
+    {"id": 10, "name": "Food"},
+    {"id": 11, "name": "Daily Life"},
+    {"id": 12, "name": "Fashion & Beauty"},
+    {"id": 13, "name": "Health & Fitness"},
+    {"id": 14, "name": "News"}
+  ]
+}

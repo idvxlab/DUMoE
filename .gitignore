@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.env
+configs/paths.env
+
+# Local run artifacts
+outputs/
+cache/
+logs/
+*.log
+wandb/
+lightning_logs/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.npz
+*.npy
+*.pkl
+*.pickle
+
+# Hydrated / private local data
+dataset/local/
+!dataset/local/README.md
+dataset/ids/_build/
+
+# Unpacked id tables (canonical release is dumoe_ids.zip + *.sample.csv)
+dataset/ids/users.csv
+dataset/ids/posts.csv
+dataset/ids/windows.csv
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

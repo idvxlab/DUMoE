@@ -1,0 +1,11 @@
+{
+  "variants": [
+    {"name": "Full", "ablation": "none", "stages": "Stage1+Stage2+Stage3"},
+    {"name": "A1_NoAdapter", "ablation": "no_adapter", "stages": "Stage1 only"},
+    {"name": "A2_NoGating", "ablation": "no_gating", "stages": "Stage1+Stage2"},
+    {"name": "A3_OnlyUser", "ablation": "only_user", "stages": "Stage1+Stage2+Stage3"},
+    {"name": "A4_OnlyShort", "ablation": "only_short", "stages": "Stage1+Stage2+Stage3"},
+    {"name": "A5_OnlyLong", "ablation": "only_long", "stages": "Stage1+Stage2+Stage3"}
+  ],
+  "seeds": [42, 2023, 3407]
+}

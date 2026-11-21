@@ -1,0 +1,30 @@
+{
+  "collection": {
+    "platform": "X",
+    "api": "official X API",
+    "start": "2025-11",
+    "end": "2026-03"
+  },
+  "totals": {
+    "num_users": 14015,
+    "num_posts": 7685700,
+    "num_posts_with_images": 2890668
+  },
+  "by_domain": [
+    {"name": "Entertainment", "num_users": 2681, "num_posts": 1470236, "num_images": 552971},
+    {"name": "Sports", "num_users": 957, "num_posts": 524810, "num_images": 197386},
+    {"name": "Technology", "num_users": 1108, "num_posts": 607617, "num_images": 228531},
+    {"name": "Business", "num_users": 872, "num_posts": 478197, "num_images": 179855},
+    {"name": "Education", "num_users": 494, "num_posts": 270905, "num_images": 101890},
+    {"name": "Gaming", "num_users": 1201, "num_posts": 658618, "num_images": 247713},
+    {"name": "Politics", "num_users": 2217, "num_posts": 1215783, "num_images": 457268},
+    {"name": "Art", "num_users": 634, "num_posts": 347680, "num_images": 130766},
+    {"name": "Culture", "num_users": 314, "num_posts": 172195, "num_images": 64764},
+    {"name": "Science", "num_users": 236, "num_posts": 129420, "num_images": 48676},
+    {"name": "Food", "num_users": 232, "num_posts": 127227, "num_images": 47851},
+    {"name": "Daily Life", "num_users": 1524, "num_posts": 835748, "num_images": 314333},
+    {"name": "Fashion & Beauty", "num_users": 466, "num_posts": 255550, "num_images": 96115},
+    {"name": "Health & Fitness", "num_users": 499, "num_posts": 273647, "num_images": 102921},
+    {"name": "News", "num_users": 580, "num_posts": 318067, "num_images": 119628}
+  ]
+}

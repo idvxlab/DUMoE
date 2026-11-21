@@ -1,0 +1,65 @@
+# Paper training / eval hyperparameters.
+# Official "Ours" / Full = staged (Stage1 → Stage2 → Stage3).
+# Joint is the ablation "w/o stage-wise training".
+
+model:
+  hidden_dim: 256
+  dropout: 0.4
+  topk_adapters: 3
+  short_recent: 30
+  long_recent: 300
+  window_size: 30
+  num_classes: 15
+
+# Shared multitask loss every update (both strategies):
+#   L = cls_weight * L_cls + rec_weight * L_rec
+loss:
+  cls_weight: 1.0
+  rec_weight: 1.5
+  rec_neg_reduction: mean
+  rec_num_neg: 10
+  weight_decay: 1.0e-2
+  batch_size: 128
+
+staged_training:  # official complete model
+  training_strategy: staged
+  stage1_epochs: 15   # backbone
+  stage2_epochs: 5    # per-class adapters
+  stage3_epochs: 5    # gating
+  lr_stage1: 1.0e-4
+  lr_stage2: 5.0e-4
+  lr_stage3: 1.0e-3
+
+joint_training:  # ablation: train all modules together
+  training_strategy: joint
+  joint_epochs: 25
+  lr_joint: 3.0e-4
+
+export:
+  mode: thresholded
+  gate_mode: soft
+  kl_threshold: 0.012
+  kl_soft_scale: 0.01
+  gate_min_alpha: 0.05
+  gate_max_alpha: 0.80
+
+downstream:
+  seeds: [42, 52, 62]
+  classification:
+    probe_label_smoothing: 0.1
+    epochs: 20
+    metrics: [Hit@1, NDCG@3, Recall, KL]
+  interaction:
+    epochs: 5
+    max_pos_per_window: 10
+    max_neg_per_window: 10
+    tweet_reduce_dim: 256
+    metrics: [Acc, Recall, F1, BCE]
+
+baselines:
+  models: [SASRec, BERT4Rec, MIND, PeterRec, PTUM, UniSRec, HORAE, DisMIR, HM4SR]
+  pretrain_epochs: 25
+  seq_len: 300
+  embed_dim: 256
+  hm4sr:
+    objective: next_item_ce_plus_idcl
