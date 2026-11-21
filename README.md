@@ -3,8 +3,7 @@
 **Official PyTorch implementation** for
 
 > **Drift-Aware Multimodal User Representation Learning via Multi-Scale Temporal Modeling and Sparse Mixture-of-Experts**  
-> Ziqing Qian, Haohang Chen, Shengqi Dang, Yuhan Xiong, Canyu Shen, Jiaying Lei, Nan Cao  
-> [[arXiv]](https://arxiv.org/abs/2608.25773) · [[PDF]](https://arxiv.org/pdf/2608.25773) · [[Code]](https://github.com/idvxlab/DUMoE)
+> [[arXiv]](https://arxiv.org/abs/2608.25773)
 
 <p align="center">
   <a href="https://arxiv.org/abs/2608.25773"><img src="https://img.shields.io/badge/arXiv-2608.25773-b31b1b.svg" alt="arXiv"></a>
@@ -15,15 +14,15 @@
 
 ---
 
-## Overview
+## 🔥 Overview
 
 Understanding user preferences from noisy, temporally evolving social media behavior is challenging because of **interest drift**: preferences shift over time, exhibit both short- and long-term patterns, and span multiple co-existing interests.
 
 **DUMoE** (*Drift-aware User Modeling with Mixture-Of-Experts*) is a unified framework for drift-aware multimodal user representation learning. It jointly models multimodal signals, multi-scale temporal dynamics, and multi-interest structure:
 
-- **Temporal dynamics-aware backbone** — fuses static profile signals (MLP), short-term behavior (LSTM), and long-term dependencies (Transformer) into a coherent user vector \(\mathbf{z}_u\).
-- **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse Top-\(K\) subset of experts to produce \(\mathbf{h}_u\).
-- **Three-stage training** — Stage 1 backbone → Stage 2 expert specialization → Stage 3 gating, with multitask loss \(L = L_{\mathrm{cls}} + 1.5\, L_{\mathrm{rec}}\).
+- ⏱️ **Temporal dynamics-aware backbone** — fuses static profile signals (MLP), short-term behavior (LSTM), and long-term dependencies (Transformer) into a coherent user vector \(\mathbf{z}_u\).
+- 🧩 **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse Top-\(K\) subset of experts to produce \(\mathbf{h}_u\).
+- 🎯 **Three-stage training** — Stage 1 backbone → Stage 2 expert specialization → Stage 3 gating, with multitask loss \(L = L_{\mathrm{cls}} + 1.5\, L_{\mathrm{rec}}\).
 
 <p align="center">
   <img src="assets/pipeline.png" width="100%" alt="DUMoE pipeline">
@@ -32,7 +31,7 @@ Understanding user preferences from noisy, temporally evolving social media beha
 
 ---
 
-## Framework
+## 🧠 Framework
 
 | Module | What it does |
 | --- | --- |
@@ -53,7 +52,7 @@ Downstream evaluation freezes the encoder and probes:
 
 ---
 
-## Dataset
+## 📦 Dataset
 
 We release a large multimodal user dataset collected from **X** (formerly Twitter) via the official API (Nov 2025 – Mar 2026).
 
@@ -87,7 +86,7 @@ Windows are **30** posts each (newest-first); split by index **0–7** train / *
 
 ---
 
-## Requirements
+## ⚙️ Requirements
 
 ```text
 Python >= 3.9
@@ -100,9 +99,9 @@ pip install -r requirements.txt
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-### 1. Clone & install
+### 1️⃣ Clone & install
 
 ```bash
 git clone https://github.com/idvxlab/DUMoE.git
@@ -111,13 +110,13 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Unpack id tables
+### 2️⃣ Unpack id tables
 
 ```bash
 unzip dataset/ids/dumoe_ids.zip -d dataset/ids
 ```
 
-### 3. Prepare local artifacts
+### 3️⃣ Prepare local artifacts
 
 Hydrate posts with the [official X API](https://developer.x.com/) if you need text/images, then build UNITE embeddings locally. Configure paths:
 
@@ -129,7 +128,7 @@ source configs/paths.env
 
 Place large local files under `dataset/local/` (gitignored).
 
-### 4. Train DUMoE (paper main = staged)
+### 4️⃣ Train DUMoE (paper main = staged)
 
 ```bash
 bash scripts/run_dumoe_staged.sh
@@ -143,7 +142,7 @@ Joint ablation (optional):
 bash scripts/run_dumoe_joint.sh
 ```
 
-### 5. Train baselines
+### 5️⃣ Train baselines
 
 ```bash
 bash scripts/run_baselines.sh
@@ -151,7 +150,7 @@ bash scripts/run_baselines.sh
 
 Models: SASRec, BERT4Rec, MIND, PeterRec, PTUM, UniSRec, HORAE, DisMIR, HM4SR.
 
-### 6. Downstream evaluation (frozen encoder)
+### 6️⃣ Downstream evaluation (frozen encoder)
 
 ```bash
 bash scripts/run_downstream.sh   # Task A then Task B
@@ -161,13 +160,13 @@ bash scripts/run_taskB.sh        # next-window interaction
 
 Protocol details: [`docs/downstream_protocol.md`](docs/downstream_protocol.md), [`downstream/README.md`](downstream/README.md).
 
-### 7. Ablations
+### 7️⃣ Ablations
 
 See [`dumoe/ablation/README.md`](dumoe/ablation/README.md).
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```text
 DUMoE/
@@ -185,7 +184,7 @@ DUMoE/
 
 ---
 
-## Citation
+## 📎 Citation
 
 If you use this code or dataset, please cite:
 
@@ -200,14 +199,14 @@ If you use this code or dataset, please cite:
 
 ---
 
-## Contact
+## ✉️ Contact
 
 - Ziqing Qian — qianziqing0719@gmail.com  
 - Corresponding author: Nan Cao  
 
 Intelligent Design & InnoVation Lab ([idvxlab](https://github.com/idvxlab)), Tongji University
 
-## License
+## 📄 License
 
 Code is released under the [MIT License](LICENSE).  
 Dataset ids are for research use; any hydrated X content remains under **X’s terms**.
