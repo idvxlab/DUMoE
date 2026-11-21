@@ -24,7 +24,7 @@ Understanding user preferences from noisy, temporally evolving social media beha
 **DUMoE** (*Drift-aware User Modeling with Mixture-Of-Experts*) is a unified framework for drift-aware multimodal user representation learning. It jointly models multimodal signals, multi-scale temporal dynamics, and multi-interest structure:
 
 - ⏱️ **Temporal dynamics-aware backbone** — fuses static profile signals (MLP), short-term behavior (LSTM), and long-term dependencies (Transformer) into a coherent user vector $z_u$.
-- 🧩 **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse Top-$K$ subset of experts to produce $h_u$.
+- 🧩 **Sparse MoE interest adapter** — specialized experts model distinct interest subspaces; a gating network selects and aggregates a sparse $\mathrm{Top}\text{-}K$ subset of experts to produce $h_u$.
 - 🎯 **Three-stage training** — Stage 1 backbone → Stage 2 expert specialization → Stage 3 gating, with multitask loss:
 
 $$
@@ -44,7 +44,7 @@ $$
 | --- | --- |
 | **Input** | User profile $m_t^u$ + multimodal interaction sequence $S_u$ (text & images), encoded by a multimodal encoder (UNITE) |
 | **(a) Backbone** | Static / short-term / long-term branches → fusion → $z_u$ |
-| **(b) MoE adapter** | Gating + Top-$K$ experts → $h_u$ |
+| **(b) MoE adapter** | Gating + $\mathrm{Top}\text{-}K$ experts → $h_u$ |
 | **Output** | Classification head $\phi_{\mathrm{cls}}$ ($L_{\mathrm{cls}}$) and recommendation head $\phi_{\mathrm{rec}}$ ($L_{\mathrm{rec}}$) |
 
 **Paper main result = staged training** (`scripts/run_dumoe_staged.sh`). Joint end-to-end training is provided as an ablation (`scripts/run_dumoe_joint.sh`).
