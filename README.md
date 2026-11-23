@@ -196,10 +196,10 @@ DUMoE/
 If you use this code or dataset, please cite:
 
 ```bibtex
-@inproceedings{qian2026dumoe,
+@article{qian2026drift,
   title={Drift-Aware Multimodal User Representation Learning via Multi-Scale Temporal Modeling and Sparse Mixture-of-Experts},
   author={Qian, Ziqing and Chen, Haohang and Dang, Shengqi and Xiong, Yuhan and Shen, Canyu and Lei, Jiaying and Cao, Nan},
-  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  journal={arXiv preprint arXiv:2608.25773},
   year={2026}
 }
 ```
